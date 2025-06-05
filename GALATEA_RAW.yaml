@@ -1,0 +1,47 @@
+### Sample configuration file - this one was created for GALATEA camera
+
+
+#1) column detection settings
+
+# detection_method - 'canny', 'radon', 'histogram' - what algorithm to use to detect edges:
+# canny - sensitive to noise, but can find columns in videos, slowest
+# radon - using radon transform, can find columns no matter their color, slow
+# histogram - simplest method, fastest
+# default setting: 'histogram'
+detection_method: 'histogram'
+
+# method_threshold: float
+# used only for radon and histogram algorithms - says how much the column signal must
+# be over mean signal of an image
+# default value: 1.24
+method_threshold: 1.24
+
+# canny_percentile: float
+# used only for canny algorithm - describes how many % of detected columns are discarded
+# default value: 95
+canny_percentile: 95
+
+#2) preprocessing settings
+
+# columns_per_amplifier: int
+# used for describing how many columns are affected by 'broken' amplifier
+# so, for galatea and scorpio cameras, this setting = 1
+# and for other, columns_per_amplifier = 4
+columns_per_amplifier: 1
+
+# preprocessing_methods: list
+# used preprocessing methods, stored as list of string. The order of the execution is determined by the sequence in the
+# list. Available preprocessing methods:
+# - 'equalize_images' - perform histogram equalization
+# - 'remove_vignette' - self-explanatory, sometimes after histogram equalization the bounds of an image are visibly darker
+# than the middle, this method will try to remove the disproportion - setting essential in daphnis flux file
+# - 'blur_img' - convolves image with mean filter
+# if list is empty, no preprocessing is applied.
+# example: preprocessing_methods: ['equalize_images', 'remove_vignette']
+# default value: []
+preprocessing_methods: []
+
+#3
+remove_vignette: [51]
+fragmented_min_distance: 71
+
